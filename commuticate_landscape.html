@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>于潼 · Commuticate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#090a0b; --wine:#161210; --gold:#f97316; --gold2:#fb923c;
+  --cream:#f5f0eb; --muted:rgba(245,240,235,.55); --dim:rgba(245,240,235,.28);
+  --divider:rgba(249,115,22,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+@page{size:A4 landscape;margin:0;}
+html { background: #111; }
+body{width:1123px;height:794px;background:var(--ink);color:var(--cream);font-family:'Cormorant Garamond','Noto Sans SC',serif;margin:0 auto;display:flex;flex-direction:column;overflow:hidden;}
+@media screen {
+  html { overflow-y: auto; min-height: 100%; }
+  body { margin: 20px auto; }
+}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 36px;height:34px;border-bottom:1px solid var(--divider);background:rgba(9,10,11,.95);flex-shrink:0;}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--gold);}
+.nav-center{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);}
+.nav-right{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--dim);}
+
+.hero{display:grid;grid-template-columns:1.1fr 1fr;border-bottom:1px solid var(--divider);flex-shrink:0;height:86px;}
+.hero-left{padding:12px 24px 12px 36px;border-right:1px solid var(--divider);display:flex;flex-direction:column;justify-content:center;gap:6px;background:var(--wine);}
+.proj-eyebrow{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;}
+.proj-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:var(--gold);}
+.proj-title{font-family:'Playfair Display',serif;font-weight:900;font-size:46px;line-height:.92;color:#fff;letter-spacing:-.02em;}
+.proj-title em{font-style:italic;color:var(--gold);}
+.proj-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--muted);line-height:1.4;}
+.hero-right{padding:12px 28px;display:flex;flex-direction:column;justify-content:center;gap:9px;background:var(--ink);}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(249,115,22,.22);padding:3px 8px;}
+.meta-list{display:flex;gap:20px;flex-wrap:wrap;}
+.meta-row{display:flex;align-items:baseline;gap:7px;}
+.meta-key{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);}
+.meta-val{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--cream);font-weight:300;}
+
+.content{display:grid;grid-template-columns:1fr 290px;flex-shrink:0;min-height:262px;border-bottom:1px solid var(--divider);padding-top:20px;}
+.col-main{padding:22px 20px 14px 36px;border-right:1px solid var(--divider);display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.section-ey{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;display:flex;align-items:center;gap:7px;margin-bottom:8px;}
+.section-ey::before{content:'';display:inline-block;width:12px;height:1px;background:var(--gold);}
+.body-text{font-family:'Noto Sans SC',sans-serif;font-size:12px;line-height:1.8;color:var(--muted);font-weight:300;}
+.body-text strong{color:var(--cream);font-weight:400;}
+.steps{display:flex;flex-direction:column;gap:8px;height:100%;}
+.step{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--divider);background:rgba(249,115,22,.03);flex:1;}
+.step-n{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:rgba(249,115,22,.3);line-height:1;flex-shrink:0;min-width:15px;margin-top:1px;}
+.step-title{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.step-desc{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);line-height:1.6;font-weight:300;}
+.col-side{padding:22px 22px 14px 18px;display:flex;flex-direction:column;justify-content:space-between;}
+.side-label{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.22em;font-weight:500;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--divider);}
+.side-label::before{content:'';display:inline-block;width:12px;height:1px;background:var(--gold);}
+.quote-block{border-left:2px solid var(--gold);padding:9px 11px;background:rgba(249,115,22,.04);}
+.quote-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;line-height:1.6;color:var(--cream);}
+.tool-list{display:flex;flex-direction:column;gap:5px;}
+.tool-row{display:flex;align-items:center;gap:8px;font-family:'Noto Sans SC',sans-serif;font-size:11.5px;color:var(--muted);font-weight:300;}
+.tool-row::before{content:'';font-family:'DM Mono',monospace;font-size:8.5px;color:var(--gold);flex-shrink:0;}
+.link-btn{display:inline-flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(249,115,22,.3);padding:7px 14px;width:100%;}
+
+.photo-strip{display:grid;grid-template-columns:320px 1fr;overflow:hidden;flex:1;}
+.photo-prototype{position:relative;overflow:hidden;border-right:1px solid var(--divider);}
+.photo-prototype img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;opacity:.88;}
+.photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,10,11,.6) 0%,transparent 55%);}
+.photo-caption{position:absolute;bottom:10px;left:12px;font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,235,.45);}
+.photo-screens{background:#050505;display:flex;align-items:center;justify-content:center;padding:10px 20px;overflow:hidden;}
+.photo-screens img{width:100%;height:100%;object-fit:contain;display:block;}
+
+.footer{display:flex;justify-content:space-between;align-items:center;padding:8px 36px;border-top:1px solid var(--divider);background:var(--wine);flex-shrink:0;}
+.footer-left{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--gold);}
+.footer-right{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <span class="nav-logo">TongYu · Portfolio</span>
+  <span class="nav-center">UX / UI  2026</span>
+  <span class="nav-right">04 / 04</span>
+</div>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="proj-eyebrow">Project 04 &middot; 2024 &middot; Group Project</div>
+    <h1 class="proj-title">Commut<em>icate</em></h1>
+    <p class="proj-sub">为骑行者设计的非分心安全通讯系统 · 车把原型 + 移动端 App · KTH</p>
+  </div>
+  <div class="hero-right">
+    <div class="tag-row">
+      <span class="tag">UI Design</span><span class="tag">User Research</span>
+      <span class="tag">Prototyping</span><span class="tag">Physical Design</span><span class="tag">Figma</span>
+    </div>
+    <div class="meta-list">
+      <div class="meta-row"><span class="meta-key">课程</span><span class="meta-val">KTH 小组项目</span></div>
+      <div class="meta-row"><span class="meta-key">形态</span><span class="meta-val">实物原型 + 移动端 App</span></div>
+      <div class="meta-row"><span class="meta-key">目标</span><span class="meta-val">骑行者安全与社区连接</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="col-main">
+    <div>
+      <div class="section-ey">项目简介</div>
+      <p class="body-text">Commuticate 将<strong>车把端物理设备</strong>与<strong>移动端 App</strong> 结合，让骑行者在不分散注意力的前提下记录和分享路况事件。车把集成振动马达与按钮，感应周边物体并支持标记位置；App 提供事件日志、社区地图与讨论，构建骑行者之间的共享网络。</p>
+      <div style="margin-top:12px">
+        <div class="section-ey">用户研究方法</div>
+        <div class="tool-list">
+          <div class="tool-row">Bodystorming（扮演通勤骑行者亲身体验）</div>
+          <div class="tool-row">Literature Review（文献综述）</div>
+          <div class="tool-row">User Interviews（用户与专家访谈）</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-ey">主要工作</div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div><div class="step-title">用户研究</div><div class="step-desc">Bodystorming 体验骑行安全痛点；对用户及专家访谈，提炼核心需求与设计约束</div></div></div>
+        <div class="step"><div class="step-n">2</div><div><div class="step-title">实物原型制作</div><div class="step-desc">参与模块焊接与硬件调试，整合振动马达、传感器，执行可用性测试验证交互逻辑</div></div></div>
+        <div class="step"><div class="step-n">3</div><div><div class="step-title">全部 App 界面设计</div><div class="step-desc">独立完成全部页面 UI 设计，建立统一视觉系统，确保界面清晰易用</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-side">
+    <div>
+      <div class="side-label">设计核心</div>
+      <div class="quote-block"><p class="quote-text">不分心地记录，不孤立地骑行——Commuticate 将个人的路况经验转化为属于所有骑行者的路况图景。</p></div>
+    </div>
+    <div>
+      <div class="side-label">工具</div>
+      <div class="tool-list">
+        <div class="tool-row">Figma（全部 UI 界面）</div>
+        <div class="tool-row">振动马达 · 按钮传感器模块 · Arduino</div>
+        <div class="tool-row"></div>
+      </div>
+    </div>
+    <div>
+      <div class="side-label">原型链接</div>
+      <a class="link-btn" href="https://www.figma.com/proto/ViSprk1YdK0ijK5poHEFrI/Group12-Commuticate?node-id=322-187" target="_blank">✍ Figma Prototype ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="photo-strip">
+  <div class="photo-prototype">
+    <img src="display.jpg" alt="Commuticate physical prototype">
+    <div class="photo-overlay"></div>
+    <div class="photo-caption">实物原型 · 车把 + 传感器</div>
+  </div>
+  <div class="photo-screens">
+    <img src="Frame 1.png" alt="Commuticate app screens">
+  </div>
+</div>
+
+<div class="footer">
+  <span class="footer-left">TongYu &middot; toyu@kth.se</span>
+  <span class="footer-right">KTH Royal Institute of Technology &middot; Stockholm 2026</span>
+</div>
+</body>
+</html>

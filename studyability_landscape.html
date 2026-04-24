@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>于潼 · Studyability Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070d09; --wine:#0d1a0f; --gold:#f59e0b;
+  --cream:#f0f7ee; --muted:rgba(240,247,238,.55); --dim:rgba(240,247,238,.28);
+  --divider:rgba(245,158,11,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+@page{size:A4 landscape;margin:0;}
+html{background:#111;}
+body{width:1123px;height:794px;background:var(--ink);color:var(--cream);font-family:'Cormorant Garamond','Noto Sans SC',serif;margin:0 auto;display:flex;flex-direction:column;overflow:hidden;}
+@media screen{html{overflow-y:auto;}body{margin:20px auto;}}
+
+/* NAV — 34px */
+.nav{height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid var(--divider);background:rgba(7,13,9,.95);}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--gold);}
+.nav-center{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);}
+.nav-right{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--dim);}
+
+/* HERO — 120px：左=标题，右=tags+项目简介 */
+.hero{height:120px;flex-shrink:0;display:grid;grid-template-columns:1.1fr 1fr;border-bottom:1px solid var(--divider);}
+.hero-left{padding:12px 24px 12px 36px;border-right:1px solid var(--divider);display:flex;flex-direction:column;justify-content:center;gap:5px;background:var(--wine);}
+.proj-eyebrow{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;}
+.proj-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:var(--gold);}
+.proj-title{font-family:'Playfair Display',serif;font-weight:900;font-size:42px;line-height:.92;color:#fff;letter-spacing:-.02em;}
+.proj-title em{font-style:italic;color:var(--gold);}
+.proj-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12.5px;color:var(--muted);line-height:1.3;}
+.hero-right{padding:12px 28px;display:flex;flex-direction:column;justify-content:center;gap:8px;background:var(--ink);}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(245,158,11,.22);padding:3px 8px;}
+.hero-desc{font-family:'Noto Sans SC',sans-serif;font-size:11px;line-height:1.65;color:var(--muted);font-weight:300;}
+.hero-desc strong{color:var(--cream);font-weight:400;}
+
+/* CONTENT — 200px：核心工作横排 + 侧栏 */
+.content{height:200px;flex-shrink:0;display:grid;grid-template-columns:1fr 220px;border-bottom:1px solid var(--divider);overflow:hidden;}
+.col-steps{padding:14px 16px 12px 36px;border-right:1px solid var(--divider);display:flex;flex-direction:column;gap:8px;overflow:hidden;}
+.col-side{padding:14px 20px 12px 18px;display:flex;flex-direction:column;gap:10px;overflow:hidden;}
+
+.section-ey{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;display:flex;align-items:center;gap:7px;margin-bottom:6px;}
+.section-ey::before{content:'';display:inline-block;width:12px;height:1px;background:var(--gold);}
+
+/* 3 steps 横排 */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:1;}
+.step{display:flex;flex-direction:column;gap:4px;padding:8px 10px;border:1px solid var(--divider);background:rgba(245,158,11,.03);}
+.step-n{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:rgba(245,158,11,.25);line-height:1;}
+.step-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-top:3px;}
+.step-desc{font-family:'Noto Sans SC',sans-serif;font-size:11.5px;color:var(--muted);line-height:1.55;font-weight:300;}
+
+.side-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;font-weight:500;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid var(--divider);}
+.side-label::before{content:'';display:inline-block;width:10px;height:1px;background:var(--gold);}
+.quote-block{border-left:2px solid var(--gold);padding:8px 10px;background:rgba(245,158,11,.04);}
+.quote-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;line-height:1.55;color:var(--cream);}
+.tool-list{display:flex;flex-direction:column;gap:5px;}
+.tool-row{display:flex;align-items:center;gap:8px;font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);font-weight:300;}
+.tool-row::before{content:'->';font-family:'DM Mono',monospace;font-size:8px;color:var(--gold);flex-shrink:0;}
+
+/* PHOTO — 406px（34+120+200+406+34=794） */
+.photo-strip{height:406px;flex-shrink:0;display:grid;grid-template-columns:280px 1fr;overflow:hidden;}
+.photo-side-panel{border-right:1px solid var(--divider);background:var(--wine);display:flex;flex-direction:column;justify-content:center;padding:24px 22px;gap:14px;}
+.photo-side-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;}
+.photo-side-label::before{content:'';display:inline-block;width:12px;height:1px;background:var(--gold);}
+.photo-side-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;line-height:1.3;color:#fff;}
+.photo-side-title em{font-style:italic;color:var(--gold);}
+.photo-side-desc{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);font-weight:300;line-height:1.65;}
+.video-link{display:flex;align-items:center;gap:8px;text-decoration:none;margin-top:4px;}
+.play-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.play-btn::after{content:'';width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent var(--gold);margin-left:2px;}
+.video-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+.photo-main{overflow:hidden;background:#050505;display:flex;align-items:center;justify-content:center;}
+.photo-main img{width:100%;height:100%;object-fit:contain;object-position:top center;display:block;opacity:.92;}
+
+/* FOOTER — 34px */
+.footer{height:34px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:0 36px;border-top:1px solid var(--divider);background:var(--wine);}
+.footer-left{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--gold);}
+.footer-right{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+
+@media screen{
+  .page-nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:40px;padding:6px 14px;z-index:999;}
+  .page-nav a{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:4px 10px;border-radius:20px;transition:background .18s,color .18s;white-space:nowrap;}
+  .page-nav .pn-home{color:rgba(255,255,255,.5);}
+  .page-nav .pn-home:hover{color:#fff;background:rgba(255,255,255,.08);}
+  .page-nav .pn-divider{color:rgba(255,255,255,.18);font-size:11px;}
+  .page-nav .pn-prev,.page-nav .pn-next{color:var(--gold);border:1px solid rgba(245,158,11,.25);}
+  .page-nav .pn-prev:hover,.page-nav .pn-next:hover{background:rgba(245,158,11,.12);border-color:var(--gold);}
+}
+@media print{.page-nav{display:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <span class="nav-logo">TongYu · Portfolio</span>
+  <span class="nav-center">UX / Interaction Design · KTH 2026</span>
+  <span class="nav-right">03 / 04</span>
+</div>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="proj-eyebrow">Project 03 &middot; 2024 &middot; Group Project</div>
+    <h1 class="proj-title">Studyability <em>Map</em></h1>
+    <p class="proj-sub">帮助留学生找到理想大学与城市 · KTH · DH2321 Information Visualization</p>
+  </div>
+  <div class="hero-right">
+    <div class="tag-row">
+      <span class="tag">Information Visualization</span>
+      <span class="tag">Vis Design Lead</span>
+      <span class="tag">Frontend Dev</span>
+      <span class="tag">User Evaluation</span>
+    </div>
+    <p class="hero-desc">Studyability Map 帮助有意留学的学生，通过<strong>温度、生活成本、学费、学术排名、英语环境</strong>等多维指标在全球 621 所大学中自由筛选，在平行坐标、散点图与交互地图的三视图联动中直观探索，<strong>让复杂的留学决策变得清晰可见</strong>。</p>
+  </div>
+</div>
+
+<div class="content">
+  <div class="col-steps">
+    <div class="section-ey">核心工作</div>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div class="step-title">可视化设计主导</div><div class="step-desc">主导整体视觉语言，定义配色系统与视觉层级；设计多视图联动逻辑，确保筛选状态跨视图实时一致</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-title">前端开发</div><div class="step-desc">基于 TypeScript 将视觉设计稿转化为可交互系统，实现数据加载与处理逻辑，高度还原设计意图</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-title">用户评估</div><div class="step-desc">参与 3 轮阶段性课堂展示，收集同伴与导师反馈，驱动每轮迭代优化</div></div>
+    </div>
+  </div>
+  <div class="col-side">
+    <div>
+      <div class="side-label">技术栈</div>
+      <div class="tool-list">
+        <div class="tool-row">TypeScript</div>
+        <div class="tool-row">D3.js（平行坐标 · 散点图）</div>
+        <div class="tool-row">Mapbox（地理可视化）</div>
+        <div class="tool-row">HTML / CSS · Figma</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="photo-strip">
+  <div class="photo-side-panel">
+    <div class="photo-side-label">界面预览</div>
+    <div class="photo-side-title">平行坐标 · 散点图<br>+ <em>地图联动</em></div>
+    <p class="photo-side-desc">多维度筛选实时同步至地图与列表，支持跨国大学横向比较</p>
+    <a class="video-link" href="https://youtu.be/S9D8J1vjjhs" target="_blank">
+      <div class="play-btn"></div>
+      <span class="video-label">Demo Video ↗</span>
+    </a>
+  </div>
+  <div class="photo-main">
+    <img src="studyability.png" alt="Studyability Map interface">
+  </div>
+</div>
+
+<div class="footer">
+  <span class="footer-left">TongYu &middot; toyu@kth.se</span>
+  <span class="footer-right">KTH Royal Institute of Technology &middot; Stockholm 2026</span>
+</div>
+
+<div class="page-nav">
+  <a class="pn-prev" href="echo_landscape.html">← Prev</a>
+  <span class="pn-divider">|</span>
+  <a class="pn-home" href="index.html">⌂ Home</a>
+  <span class="pn-divider">|</span>
+  <a class="pn-next" href="commuticate_landscape.html">Next →</a>
+</div>
+
+</body>
+</html>

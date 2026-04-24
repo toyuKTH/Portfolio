@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TongYu · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0a0608;
+  --wine:#1e0d15;
+  --wine2:#160a11;
+  --gold:#c9a454;
+  --cream:#f0e6d0;
+  --muted:rgba(240,230,208,.58);
+  --dim:rgba(240,230,208,.26);
+  --divider:rgba(201,164,84,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+html { background: var(--ink); scroll-behavior: smooth; }
+body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Garamond', 'Noto Sans SC', serif; }
+
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── NAV ── */
+nav {
+  height: 46px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--divider);
+  background: rgba(10,6,8,.96);
+  flex-shrink: 0;
+}
+.nav-logo { font-family:'Playfair Display',serif; font-style:italic; font-size:17px; color:var(--gold); text-decoration:none; }
+.nav-links { display:flex; gap:16px; list-style:none; }
+.nav-links a { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color .2s; }
+.nav-links a:hover { color:var(--gold); }
+.nav-contact { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,164,84,.24); padding:5px 10px; text-decoration:none; transition:background .2s,color .2s; }
+.nav-contact:hover { background:var(--gold); color:var(--ink); }
+
+/* ── MAIN ── */
+main { flex:1; display:flex; flex-direction:column; }
+
+/* ── HERO ── */
+.hero-wrap { max-width:1040px; width:100%; margin:0 auto; padding:18px 24px 8px; flex-shrink:0; }
+.hero {
+  display:grid; grid-template-columns:1.02fr .98fr;
+  gap:24px; align-items:start;
+  padding:10px 0 12px;
+  border-bottom:1px solid var(--divider);
+}
+.hero-eyebrow { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.hero-eyebrow::before { content:''; display:inline-block; width:16px; height:1px; background:var(--gold); }
+.hero-name { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(40px,5.6vw,64px); line-height:.95; color:#fff; letter-spacing:-.02em; }
+.hero-name em { font-style:italic; color:var(--gold); }
+.hero-role { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--muted); margin-top:7px; line-height:1.35; }
+.hero-right { padding-top:2px; }
+.hero-desc { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; line-height:1.68; color:var(--muted); font-weight:300; margin-bottom:10px; }
+.hero-desc strong { color:var(--cream); font-weight:400; }
+.hero-meta { display:grid; gap:4px; padding:8px 10px; border:1px solid var(--divider); background:rgba(255,255,255,.01); }
+.hero-meta-row { display:flex; align-items:baseline; gap:7px; }
+.hero-meta-key { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); min-width:40px; flex-shrink:0; }
+.hero-meta-val { font-family:'Noto Sans SC',sans-serif; font-size:12px; color:var(--cream); font-weight:300; line-height:1.45; }
+
+/* ── PROJECTS ── */
+.projects-section { max-width:1040px; width:100%; margin:0 auto; padding:8px 24px 14px; flex:1; display:flex; flex-direction:column; min-height:0; }
+.projects-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; flex-shrink:0; }
+.projects-eyebrow { font-family:'DM Mono',monospace; font-size: 9px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:8px; }
+.projects-eyebrow::before { content:''; display:inline-block; width:16px; height:1px; background:var(--gold); }
+.projects-count { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; color:var(--dim); }
+
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; min-height:0; }
+
+/* ── CARD ── */
+.card {
+  position:relative;
+  background:linear-gradient(180deg,rgba(30,13,21,.96) 0%,rgba(22,10,17,.98) 100%);
+  border:1px solid var(--divider);
+  overflow:hidden;
+  text-decoration:none;
+  display:block;
+  transition:transform .18s ease, border-color .18s ease;
+  min-height:0;
+}
+.card:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.12); }
+.card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--card-accent,var(--gold)); opacity:.9; }
+
+.card-inner { padding:10px 12px 9px; height:100%; display:flex; flex-direction:column; }
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:5px; }
+.card-num { font-family:'DM Mono',monospace; font-size: 8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); line-height:1.35; }
+.card-arrow { font-family:'DM Mono',monospace; font-size: 12px; color:var(--card-accent,var(--gold)); transition:transform .18s; flex-shrink:0; }
+.card:hover .card-arrow { transform:translateX(3px); }
+.card-title { font-family:'Playfair Display',serif; font-weight:900; font-size:26px; line-height:1.02; color:#fff; letter-spacing:-.02em; margin-bottom:3px; white-space:nowrap; }
+.card-title em { font-style:italic; color:var(--card-accent,var(--gold)); }
+.card-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size: 14px; color:var(--muted); line-height:1.26; margin-bottom:6px; }
+.card-desc { font-family:'Noto Sans SC',sans-serif; font-size: 11px; line-height:1.5; color:rgba(240,230,208,.42); font-weight:300; margin-bottom:6px; }
+.card-footer { margin-top:auto; padding-top:6px; border-top:1px solid var(--divider); }
+.card-status { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); line-height:1.35; }
+
+/* Per-card accent — 金铜暖色交替 */
+.card-1 { --card-accent: #c9a454; } /* 金色   */
+.card-2 { --card-accent: #c4875a; } /* 铜棕   */
+.card-3 { --card-accent: #e0c070; } /* 浅金   */
+.card-4 { --card-accent: #a07840; } /* 深铜   */
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--divider); padding:10px 24px; display:flex; justify-content:space-between; align-items:center; background:var(--wine2); gap:14px; flex-wrap:wrap; flex-shrink:0; }
+.footer-logo { font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--gold); }
+.footer-links { display:flex; gap:14px; flex-wrap:wrap; }
+.footer-links a { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:var(--gold); }
+.footer-copy { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); }
+
+/* ── Responsive ── */
+@media (max-width:900px) {
+  nav { padding:0 16px; }
+  .nav-contact { display:none; }
+  .hero-wrap { padding:14px 16px 8px; }
+  .hero { grid-template-columns:1fr; gap:16px; }
+  .projects-section { padding:8px 16px 14px; }
+  .projects-grid { grid-template-columns:1fr; }
+  footer { padding:10px 16px; flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <a class="nav-logo" href="#">TongYu</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="mailto:toyu@kth.se">Contact</a></li>
+    </ul>
+    <a class="nav-contact" href="mailto:toyu@kth.se">Get in Touch</a>
+  </nav>
+
+  <main>
+    <section class="hero-wrap">
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-eyebrow">HCI · UX Design · Creative Tech</div>
+          <h1 class="hero-name">Tong<em>Yu</em></h1>
+          <p class="hero-role">Interaction Designer &amp; Researcher<br>KTH Royal Institute of Technology</p>
+        </div>
+        <div class="hero-right">
+          <p class="hero-desc">
+            在 KTH 攻读<strong>交互媒体技术</strong>硕士，专注于 HCI、交互设计与信息可视化。
+            曾在税务系统与企业数字化项目中担任系统分析师，具备<strong>用户研究、原型设计与前端实现</strong>的完整能力。
+          </p>
+          <div class="hero-meta">
+            <div class="hero-meta-row">
+              <span class="hero-meta-key">现居</span>
+              <span class="hero-meta-val">Stockholm, Sweden</span>
+            </div>
+            <div class="hero-meta-row">
+              <span class="hero-meta-key">院校</span>
+              <span class="hero-meta-val">KTH Royal Institute of Technology</span>
+            </div>
+            <div class="hero-meta-row">
+              <span class="hero-meta-key">联系</span>
+              <span class="hero-meta-val">toyu@kth.se · (+86) 18547602877</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="projects-header">
+        <div class="projects-eyebrow">Selected Projects</div>
+        <div class="projects-count">2024 – 2025 · 04 Works</div>
+      </div>
+
+      <div class="projects-grid">
+
+        <a class="card card-1" href="sdgs_landscape.html">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-num">01 · 2026 · Individual Project</div>
+              <div class="card-arrow">→</div>
+            </div>
+            <div class="card-title">Compose with the <em>SDGs</em></div>
+            <div class="card-sub">将联合国可持续发展目标数据转化为音乐</div>
+            <div class="card-desc">探索声音化交互能否让复杂的全球数据更具接近感，通过地图点击触发实时乐谱生成。</div>
+            <div class="card-footer">
+              <span class="card-status">Completed · ICAD Submission</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card card-2" href="echo_landscape.html">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-num">02 · 2025 · Exhibited</div>
+              <div class="card-arrow">→</div>
+            </div>
+            <div class="card-title">Echo of <em>Action</em></div>
+            <div class="card-sub">手势驱动的交互装置 · KTH &amp; Tekniska Museet</div>
+            <div class="card-desc">参与者用身体手势控制三颗虚拟星球的命运，将太空伦理议题具身化，并在 Navet Festival 展出。</div>
+            <div class="card-footer">
+              <span class="card-status">Exhibited · Navet Festival 2025</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card card-3" href="studyability_landscape.html">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-num">03 · 2024 · Group Project</div>
+              <div class="card-arrow">→</div>
+            </div>
+            <div class="card-title">Studyability <em>Map</em></div>
+            <div class="card-sub">帮助留学生找到理想大学与城市 · KTH</div>
+            <div class="card-desc">结合平行坐标、散点图与交互地图，帮助用户在全球大学中找到更适合自己的选择。</div>
+            <div class="card-footer">
+              <span class="card-status">Completed · KTH</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card card-4" href="commuticate_landscape.html">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-num">04 · 2024 · Group Project</div>
+              <div class="card-arrow">→</div>
+            </div>
+            <div class="card-title">Commut<em>icate</em></div>
+            <div class="card-sub">为骑行者设计的非分心安全通讯系统</div>
+            <div class="card-desc">结合车把端设备与移动端 App，让骑行者在不分散注意力的前提下记录路况并共享信息。</div>
+            <div class="card-footer">
+              <span class="card-status">Completed · KTH</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">TongYu · Portfolio 2026</div>
+    <div class="footer-links">
+      <a href="mailto:toyu@kth.se">toyu@kth.se</a>
+      <a href="tel:+8618547602877">(+86) 18547602877</a>
+    </div>
+    <div class="footer-copy">KTH Royal Institute of Technology · Stockholm</div>
+  </footer>
+
+</div>
+</body>
+</html>

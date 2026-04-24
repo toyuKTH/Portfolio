@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TongYu · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── SHARED VARIABLES ── */
+:root {
+  --ink:#0a0608; --wine:#1e0d15; --wine2:#160a11;
+  --gold:#c9a454; --cream:#f0e6d0;
+  --muted:rgba(240,230,208,.58); --dim:rgba(240,230,208,.26);
+  --divider:rgba(201,164,84,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+html { background: #111; }
+body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Garamond', 'Noto Sans SC', serif; }
+
+/* ── PAGE SWITCHING ── */
+.page { display: none; }
+.page.active { display: flex; flex-direction: column; }
+
+/* ── INDEX PAGE ── */
+#page-index {
+  min-height: 100vh;
+}
+
+/* INDEX NAV */
+#page-index nav {
+  height: 46px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; border-bottom: 1px solid var(--divider);
+  background: rgba(10,6,8,.96); flex-shrink: 0;
+}
+.nav-logo { font-family:'Playfair Display',serif; font-style:italic; font-size:15px; color:var(--gold); text-decoration:none; cursor:pointer; }
+.nav-links { display:flex; gap:16px; list-style:none; }
+.nav-links a { font-family:'DM Mono',monospace; font-size:7.8px; letter-spacing:.15em; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color .2s; }
+.nav-links a:hover { color:var(--gold); }
+.nav-contact { font-family:'DM Mono',monospace; font-size:7.8px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,164,84,.24); padding:5px 10px; text-decoration:none; }
+
+/* INDEX HERO */
+.hero-wrap { max-width:1040px; width:100%; margin:0 auto; padding:18px 24px 8px; flex-shrink:0; }
+.hero-grid { display:grid; grid-template-columns:1.02fr .98fr; gap:24px; align-items:start; padding:10px 0 12px; border-bottom:1px solid var(--divider); }
+.hero-eyebrow { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.hero-eyebrow::before { content:''; display:inline-block; width:16px; height:1px; background:var(--gold); }
+.hero-name { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(40px,5.6vw,64px); line-height:.95; color:#fff; letter-spacing:-.02em; }
+.hero-name em { font-style:italic; color:var(--gold); }
+.hero-role { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--muted); margin-top:7px; line-height:1.35; }
+.hero-desc { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; line-height:1.68; color:var(--muted); font-weight:300; margin-bottom:10px; }
+.hero-desc strong { color:var(--cream); font-weight:400; }
+.hero-meta { display:grid; gap:4px; padding:8px 10px; border:1px solid var(--divider); background:rgba(255,255,255,.01); }
+.hero-meta-row { display:flex; align-items:baseline; gap:7px; }
+.hero-meta-key { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); min-width:52px; flex-shrink:0; }
+.hero-meta-val { font-family:'Noto Sans SC',sans-serif; font-size:12px; color:var(--cream); font-weight:300; }
+
+/* INDEX PROJECTS */
+.projects-section { max-width:1040px; width:100%; margin:0 auto; padding:8px 24px 14px; flex:1; display:flex; flex-direction:column; }
+.projects-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; }
+.projects-eyebrow { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:8px; }
+.projects-eyebrow::before { content:''; display:inline-block; width:16px; height:1px; background:var(--gold); }
+.projects-count { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; color:var(--dim); }
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; }
+
+/* CARD */
+.card { position:relative; background:linear-gradient(180deg,rgba(30,13,21,.96) 0%,rgba(22,10,17,.98) 100%); border:1px solid var(--divider); overflow:hidden; text-decoration:none; display:block; cursor:pointer; transition:transform .18s,border-color .18s; }
+.card:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.12); }
+.card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--card-accent,var(--gold)); opacity:.9; }
+.card-inner { padding:10px 12px 9px; height:100%; display:flex; flex-direction:column; }
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:5px; }
+.card-num { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
+.card-arrow { font-family:'DM Mono',monospace; font-size:12px; color:var(--card-accent,var(--gold)); transition:transform .18s; }
+.card:hover .card-arrow { transform:translateX(3px); }
+.card-title { font-family:'Playfair Display',serif; font-weight:900; font-size:26px; line-height:1.02; color:#fff; letter-spacing:-.02em; margin-bottom:3px; white-space:nowrap; }
+.card-title em { font-style:italic; color:var(--card-accent,var(--gold)); }
+.card-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--muted); line-height:1.26; margin-bottom:6px; }
+.card-desc { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; line-height:1.5; color:rgba(240,230,208,.42); font-weight:300; margin-bottom:6px; }
+.card-footer { margin-top:auto; padding-top:6px; border-top:1px solid var(--divider); }
+.card-status { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); }
+.card-1 { --card-accent:#c9a454; }
+.card-2 { --card-accent:#c4875a; }
+.card-3 { --card-accent:#e0c070; }
+.card-4 { --card-accent:#a07840; }
+
+/* INDEX FOOTER */
+#page-index footer { border-top:1px solid var(--divider); padding:10px 24px; display:flex; justify-content:space-between; align-items:center; background:var(--wine2); flex-shrink:0; }
+.footer-logo { font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:var(--gold); }
+.footer-links { display:flex; gap:14px; }
+.footer-links a { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); text-decoration:none; }
+.footer-copy { font-family:'DM Mono',monospace; font-size:8px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); }
+
+/* ── PROJECT PAGES (A4 landscape) ── */
+.proj-page {
+  width: 1123px;
+  height: 794px;
+  overflow: hidden;
+  flex-direction: column;
+  margin: 0 auto;
+}
+@media screen { .proj-page { margin: 20px auto; } }
+@page { size: A4 landscape; margin: 0; }
+
+/* Project page nav bar */
+.pnav { height:34px; flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 36px; border-bottom:1px solid var(--p-divider,rgba(201,164,84,.15)); background:rgba(10,6,8,.95); }
+.pnav-logo { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:var(--p-gold,var(--gold)); cursor:pointer; }
+.pnav-center { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--p-dim,var(--dim)); }
+.pnav-right { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.14em; color:var(--p-dim,var(--dim)); }
+
+/* Project hero */
+.phero { height:120px; flex-shrink:0; display:grid; grid-template-columns:1.1fr 1fr; border-bottom:1px solid var(--p-divider,var(--divider)); }
+.phero-left { padding:12px 24px 12px 36px; border-right:1px solid var(--p-divider,var(--divider)); display:flex; flex-direction:column; justify-content:center; gap:5px; background:var(--p-wine,var(--wine)); }
+.proj-eyebrow { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--p-gold,var(--gold)); display:flex; align-items:center; gap:8px; }
+.proj-eyebrow::before { content:''; display:inline-block; width:18px; height:1px; background:var(--p-gold,var(--gold)); }
+.proj-title { font-family:'Playfair Display',serif; font-weight:900; font-size:42px; line-height:.92; color:#fff; letter-spacing:-.02em; }
+.proj-title em { font-style:italic; color:var(--p-gold,var(--gold)); }
+.proj-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:12.5px; color:var(--p-muted,var(--muted)); line-height:1.3; }
+.phero-right { padding:12px 28px; display:flex; flex-direction:column; justify-content:center; gap:8px; background:var(--p-ink,var(--ink)); }
+.tag-row { display:flex; flex-wrap:wrap; gap:5px; }
+.tag { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--p-muted,var(--muted)); border:1px solid var(--p-divider,var(--divider)); padding:3px 8px; }
+.hero-desc { font-family:'Noto Sans SC',sans-serif; font-size:11px; line-height:1.65; color:var(--p-muted,var(--muted)); font-weight:300; }
+.hero-desc strong { color:var(--p-cream,var(--cream)); font-weight:400; }
+
+/* Project content area */
+.pcontent { flex-shrink:0; display:grid; border-bottom:1px solid var(--p-divider,var(--divider)); overflow:hidden; }
+.pcontent.cols-steps-tech { grid-template-columns:1fr 200px; height:200px; }
+.col-steps { padding:14px 16px 12px 36px; border-right:1px solid var(--p-divider,var(--divider)); display:flex; flex-direction:column; gap:8px; overflow:hidden; }
+.col-tech { padding:14px 20px 12px 18px; display:flex; flex-direction:column; gap:8px; overflow:hidden; }
+.col-side { padding:14px 20px 12px 18px; display:flex; flex-direction:column; gap:10px; overflow:hidden; }
+
+.section-ey { font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--p-gold,var(--gold)); font-weight:500; display:flex; align-items:center; gap:7px; margin-bottom:6px; }
+.section-ey::before { content:''; display:inline-block; width:12px; height:1px; background:var(--p-gold,var(--gold)); }
+
+.steps-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; flex:1; }
+.steps-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; flex:1; }
+.step { display:flex; flex-direction:column; gap:4px; padding:8px 10px; border:1px solid var(--p-divider,var(--divider)); background:rgba(201,164,84,.03); }
+.step-n { font-family:'Playfair Display',serif; font-weight:700; font-size:20px; color:rgba(201,164,84,.25); line-height:1; }
+.step-title { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.07em; text-transform:uppercase; color:var(--p-gold,var(--gold)); margin-top:3px; }
+.step-desc { font-family:'Noto Sans SC',sans-serif; font-size:11.5px; color:var(--p-muted,var(--muted)); line-height:1.55; font-weight:300; }
+
+.side-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.22em; font-weight:500; text-transform:uppercase; color:var(--p-gold,var(--gold)); display:flex; align-items:center; gap:7px; margin-bottom:7px; padding-bottom:5px; border-bottom:1px solid var(--p-divider,var(--divider)); }
+.side-label::before { content:''; display:inline-block; width:10px; height:1px; background:var(--p-gold,var(--gold)); }
+.quote-block { border-left:2px solid var(--p-gold,var(--gold)); padding:8px 10px; background:rgba(201,164,84,.04); }
+.quote-text { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:12px; line-height:1.55; color:var(--p-cream,var(--cream)); }
+.tool-list { display:flex; flex-direction:column; gap:5px; }
+.tool-row { display:flex; align-items:center; gap:8px; font-family:'Noto Sans SC',sans-serif; font-size:11px; color:var(--p-muted,var(--muted)); font-weight:300; }
+.tool-row::before { content:'->'; font-family:'DM Mono',monospace; font-size:8px; color:var(--p-gold,var(--gold)); flex-shrink:0; }
+
+/* Project photo strip */
+.pscreenshot { flex-shrink:0; display:grid; overflow:hidden; }
+.pscreenshot.h406 { height:406px; }
+.pscreenshot.h440 { height:440px; }
+.screenshot-img { overflow:hidden; border-right:1px solid var(--p-divider,var(--divider)); position:relative; }
+.screenshot-img img { width:100%; height:100%; object-fit:cover; object-position:center 35%; display:block; opacity:.9; }
+.screenshot-img.contain img { object-fit:contain; object-position:top center; opacity:.95; }
+.screenshot-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(6,11,18,.5) 0%,transparent 50%); }
+.screenshot-caption { position:absolute; bottom:12px; left:16px; font-family:'DM Mono',monospace; font-size:7.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(224,240,248,.45); }
+.screenshot-side { padding:24px; display:flex; flex-direction:column; justify-content:center; gap:12px; background:var(--p-wine,var(--wine)); }
+.screenshot-side-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--p-gold,var(--gold)); display:flex; align-items:center; gap:7px; }
+.screenshot-side-label::before { content:''; display:inline-block; width:12px; height:1px; background:var(--p-gold,var(--gold)); }
+.screenshot-side h2 { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; line-height:1.25; color:#fff; }
+.screenshot-side h2 em { font-style:italic; color:var(--p-gold,var(--gold)); }
+.screenshot-side p { font-family:'Noto Sans SC',sans-serif; font-size:11px; color:var(--p-muted,var(--muted)); font-weight:300; line-height:1.65; }
+.pmeta-list { display:flex; flex-direction:column; gap:5px; }
+.pmeta-row { display:flex; align-items:baseline; gap:8px; }
+.pmeta-key { font-family:'DM Mono',monospace; font-size:7.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--p-dim,var(--dim)); min-width:48px; }
+.pmeta-val { font-family:'Noto Sans SC',sans-serif; font-size:10.5px; color:var(--p-cream,var(--cream)); font-weight:300; }
+.link-btn { display:inline-flex; align-items:center; font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--p-gold,var(--gold)); text-decoration:none; border:1px solid var(--p-divider,var(--divider)); padding:6px 12px; }
+
+/* photo-side-panel (studyability style) */
+.photo-side-panel { border-right:1px solid var(--p-divider,var(--divider)); background:var(--p-wine,var(--wine)); display:flex; flex-direction:column; justify-content:center; padding:24px 22px; gap:14px; }
+.photo-side-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--p-gold,var(--gold)); display:flex; align-items:center; gap:7px; }
+.photo-side-label::before { content:''; display:inline-block; width:12px; height:1px; background:var(--p-gold,var(--gold)); }
+.photo-side-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; line-height:1.3; color:#fff; }
+.photo-side-title em { font-style:italic; color:var(--p-gold,var(--gold)); }
+.photo-side-desc { font-family:'Noto Sans SC',sans-serif; font-size:11px; color:var(--p-muted,var(--muted)); font-weight:300; line-height:1.65; }
+.video-link { display:flex; align-items:center; gap:8px; text-decoration:none; }
+.play-btn { width:26px; height:26px; border-radius:50%; border:1.5px solid var(--p-gold,var(--gold)); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.play-btn::after { content:''; width:0; height:0; border-style:solid; border-width:5px 0 5px 8px; border-color:transparent transparent transparent var(--p-gold,var(--gold)); margin-left:2px; }
+.video-label { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--p-gold,var(--gold)); }
+.photo-main { overflow:hidden; background:#050505; display:flex; align-items:center; justify-content:center; }
+.photo-main img { width:100%; height:100%; object-fit:contain; object-position:top center; display:block; opacity:.92; }
+
+/* Project footer */
+.pfooter { height:34px; flex-shrink:0; display:flex; justify-content:space-between; align-items:center; padding:0 36px; border-top:1px solid var(--p-divider,var(--divider)); background:var(--p-wine,var(--wine)); }
+.pfooter-left { font-family:'Playfair Display',serif; font-style:italic; font-size:11px; color:var(--p-gold,var(--gold)); }
+.pfooter-right { font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--p-dim,var(--dim)); }
+
+/* Project color themes */
+.theme-gold  { --p-ink:#0a0608; --p-wine:#1e0d15; --p-gold:#c9a454; --p-cream:#f0e6d0; --p-muted:rgba(240,230,208,.55); --p-dim:rgba(240,230,208,.28); --p-divider:rgba(201,164,84,.15); }
+.theme-blue  { --p-ink:#060b12; --p-wine:#0a1628; --p-gold:#38bdf8; --p-cream:#e0f0f8; --p-muted:rgba(224,240,248,.55); --p-dim:rgba(224,240,248,.28); --p-divider:rgba(56,189,248,.15); }
+.theme-amber { --p-ink:#070d09; --p-wine:#0d1a0f; --p-gold:#f59e0b; --p-cream:#f0f7ee; --p-muted:rgba(240,247,238,.55); --p-dim:rgba(240,247,238,.28); --p-divider:rgba(245,158,11,.15); }
+.theme-orange{ --p-ink:#090a0b; --p-wine:#161210; --p-gold:#f97316; --p-cream:#f5f0eb; --p-muted:rgba(245,240,235,.55); --p-dim:rgba(245,240,235,.28); --p-divider:rgba(249,115,22,.15); }
+
+/* Commuticate photo strip */
+.photo-prototype { position:relative; overflow:hidden; border-right:1px solid var(--p-divider,var(--divider)); }
+.photo-prototype img { width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block; opacity:.88; }
+.proto-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(9,10,11,.6) 0%,transparent 55%); }
+.proto-caption { position:absolute; bottom:10px; left:12px; font-family:'DM Mono',monospace; font-size:7.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,240,235,.45); }
+.photo-screens { background:#050505; display:flex; align-items:center; justify-content:center; padding:10px 20px; overflow:hidden; }
+.photo-screens img { width:100%; height:100%; object-fit:contain; display:block; }
+
+/* Page nav (screen only) */
+.page-nav { position:fixed; bottom:16px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:8px; background:rgba(0,0,0,.72); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:40px; padding:6px 14px; z-index:999; }
+.page-nav a,.page-nav span { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; padding:4px 10px; border-radius:20px; transition:background .18s,color .18s; white-space:nowrap; cursor:pointer; }
+.pn-home { color:rgba(255,255,255,.5); }
+.pn-home:hover { color:#fff; background:rgba(255,255,255,.08); }
+.pn-divider { color:rgba(255,255,255,.18) !important; font-size:11px !important; padding:0 !important; }
+.pn-prev,.pn-next { color:var(--gold); border:1px solid rgba(201,164,84,.25); }
+.pn-prev:hover,.pn-next:hover { background:rgba(201,164,84,.12); }
+@media print { .page-nav { display:none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 0: INDEX
+═══════════════════════════════════════════ -->
+<div id="page-index" class="page active">
+  <nav>
+    <a class="nav-logo" onclick="showPage('index')">TongYu</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="mailto:toyu@kth.se">Contact</a></li>
+    </ul>
+    <a class="nav-contact" href="mailto:toyu@kth.se">Get in Touch</a>
+  </nav>
+  <main style="flex:1;display:flex;flex-direction:column;">
+    <section class="hero-wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">HCI · UX Design · Creative Tech</div>
+          <h1 class="hero-name">Tong<em>Yu</em></h1>
+          <p class="hero-role">Interaction Designer &amp; Researcher<br>KTH Royal Institute of Technology</p>
+        </div>
+        <div>
+          <p class="hero-desc">Master's student in <strong>Interactive Media Technology</strong> at KTH, with a focus on HCI, interaction design, and information visualization. Former systems analyst with hands-on experience in <strong>user research, prototyping, and frontend development</strong>.</p>
+          <div class="hero-meta" style="margin-top:10px;">
+            <div class="hero-meta-row"><span class="hero-meta-key">Location</span><span class="hero-meta-val">Stockholm, Sweden</span></div>
+            <div class="hero-meta-row"><span class="hero-meta-key">School</span><span class="hero-meta-val">KTH Royal Institute of Technology</span></div>
+            <div class="hero-meta-row"><span class="hero-meta-key">Contact</span><span class="hero-meta-val">toyu@kth.se · (+86) 18547602877</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="projects-section" id="projects">
+      <div class="projects-header">
+        <div class="projects-eyebrow">Selected Projects</div>
+        <div class="projects-count">2024 – 2025 · 04 Works</div>
+      </div>
+      <div class="projects-grid">
+        <div class="card card-1" onclick="showPage('sdgs')">
+          <div class="card-inner">
+            <div class="card-top"><div class="card-num">01 · 2026 · Individual Project</div><div class="card-arrow">→</div></div>
+            <div class="card-title">Compose with the <em>SDGs</em></div>
+            <div class="card-sub">Translating UN sustainability data into music</div>
+            <div class="card-desc">Exploring whether sonification can make complex global data more approachable — map clicks generate real-time musical scores.</div>
+            <div class="card-footer"><span class="card-status">Completed · ICAD Submission</span></div>
+          </div>
+        </div>
+        <div class="card card-2" onclick="showPage('echo')">
+          <div class="card-inner">
+            <div class="card-top"><div class="card-num">02 · 2025 · Exhibited</div><div class="card-arrow">→</div></div>
+            <div class="card-title">Echo of <em>Action</em></div>
+            <div class="card-sub">Gesture-driven installation · KTH &amp; Tekniska Museet</div>
+            <div class="card-desc">Visitors control virtual planets with body gestures, embodying space ethics themes. Exhibited at Navet Festival 2025.</div>
+            <div class="card-footer"><span class="card-status">Exhibited · Navet Festival 2025</span></div>
+          </div>
+        </div>
+        <div class="card card-3" onclick="showPage('studyability')">
+          <div class="card-inner">
+            <div class="card-top"><div class="card-num">03 · 2024 · Group Project</div><div class="card-arrow">→</div></div>
+            <div class="card-title">Studyability <em>Map</em></div>
+            <div class="card-sub">Helping international students find their ideal university</div>
+            <div class="card-desc">Parallel coordinates, scatterplot, and interactive map working in sync — filtering 621 universities across 67 countries.</div>
+            <div class="card-footer"><span class="card-status">Completed · DH2321 · KTH</span></div>
+          </div>
+        </div>
+        <div class="card card-4" onclick="showPage('commuticate')">
+          <div class="card-inner">
+            <div class="card-top"><div class="card-num">04 · 2024 · Group Project</div><div class="card-arrow">→</div></div>
+            <div class="card-title">Commut<em>icate</em></div>
+            <div class="card-sub">Non-distracting safety communication for cyclists</div>
+            <div class="card-desc">Handlebar device + mobile app enabling cyclists to log and share road incidents without breaking their attention.</div>
+            <div class="card-footer"><span class="card-status">Completed · KTH</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-logo">TongYu · Portfolio 2026</div>
+    <div class="footer-links"><a href="mailto:toyu@kth.se">toyu@kth.se</a><a href="tel:+8618547602877">(+86) 18547602877</a></div>
+    <div class="footer-copy">KTH Royal Institute of Technology · Stockholm</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 1: SDGs
+═══════════════════════════════════════════ -->
+<div id="page-sdgs" class="page proj-page theme-gold">
+  <div class="pnav">
+    <span class="pnav-logo" onclick="showPage('index')">TongYu · Portfolio</span>
+    <span class="pnav-center">UX / Interaction Design · KTH 2026</span>
+    <span class="pnav-right">01 / 04</span>
+  </div>
+  <div class="phero">
+    <div class="phero-left">
+      <div class="proj-eyebrow">Project 01 &middot; 2026 &middot; Completed</div>
+      <h1 class="proj-title">Compose with the <em>SDGs</em></h1>
+      <p class="proj-sub">Translating UN SDG data into music · Sensing global issues through sound</p>
+    </div>
+    <div class="phero-right">
+      <div class="tag-row">
+        <span class="tag">Data Sonification</span><span class="tag">Interaction Design</span>
+        <span class="tag">User Research</span><span class="tag">Web Audio</span><span class="tag">Frontend Dev</span>
+      </div>
+      <p class="hero-desc">SDG data is vast and uneven — traditional charts struggle to create emotional resonance. This project explores whether <strong>sonification-driven interaction can make complex global data more approachable</strong>, while prompting reflection on what missing data reveals about the world.</p>
+    </div>
+  </div>
+  <div class="pcontent cols-steps-tech">
+    <div class="col-steps">
+      <div class="section-ey">Design Process</div>
+      <div class="steps-4">
+        <div class="step"><div class="step-n">1</div><div class="step-title">Course Prototype</div><div class="step-desc">Built initial sound-mapping prototype in SuperCollider to validate the data→note interaction logic</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-title">User Research · Usability</div><div class="step-desc">Collected feedback via questionnaires and interviews; identified key usability issues</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-title">Iteration · Tech Migration</div><div class="step-desc">Redesigned interaction based on findings; migrated from SuperCollider to HTML/CSS/JS + Tone.js</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-title">Expansion · Academic Output</div><div class="step-desc">Added map interaction, live score visualization, key control; submitted to ICAD</div></div>
+      </div>
+    </div>
+    <div class="col-tech">
+      <div class="side-label">Tech Stack</div>
+      <div class="tool-list">
+        <div class="tool-row">HTML / CSS / JavaScript</div>
+        <div class="tool-row">Tone.js · Web Audio API</div>
+        <div class="tool-row">Mapbox (map interaction)</div>
+        <div class="tool-row">Figma · Git / GitHub</div>
+      </div>
+    </div>
+  </div>
+  <div class="pscreenshot h406" style="display:grid;grid-template-columns:1fr 280px;">
+    <div class="screenshot-img contain"><img src="interface.png" alt="Compose with the SDGs interface"></div>
+    <div class="screenshot-side">
+      <div class="screenshot-side-label">Interface Preview</div>
+      <h2>Map Interaction<br>+ <em>Live Score</em> Generation</h2>
+      <p>Click a country to add its SDG data as a note — build a melody while exploring global sustainability gaps.</p>
+      <div class="pmeta-list">
+        <div class="pmeta-row"><span class="pmeta-key">Period</span><span class="pmeta-val">Aug 2025 – Mar 2026</span></div>
+        <div class="pmeta-row"><span class="pmeta-key">Type</span><span class="pmeta-val">Individual KTH course project</span></div>
+        <div class="pmeta-row"><span class="pmeta-key">Output</span><span class="pmeta-val">Submitted to ICAD</span></div>
+      </div>
+      <a class="link-btn" href="https://toyukth.github.io/ComposeSDGs/" target="_blank">↗ Live Demo</a>
+    </div>
+  </div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="page-nav">
+    <span class="pn-prev" onclick="showPage('commuticate')">← Prev</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-home" onclick="showPage('index')">⌂ Home</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-next" onclick="showPage('echo')">Next →</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2: ECHO OF ACTION
+═══════════════════════════════════════════ -->
+<div id="page-echo" class="page proj-page theme-blue">
+  <div class="pnav">
+    <span class="pnav-logo" onclick="showPage('index')">TongYu · Portfolio</span>
+    <span class="pnav-center">UX / Interaction Design · KTH 2026</span>
+    <span class="pnav-right">02 / 04</span>
+  </div>
+  <div class="phero">
+    <div class="phero-left">
+      <div class="proj-eyebrow">Project 02 &middot; 2025 &middot; Exhibited</div>
+      <h1 class="proj-title">Echo of <em>Action</em></h1>
+      <p class="proj-sub">Gesture-driven installation exploring space resource ethics · KTH &amp; Tekniska Museet</p>
+    </div>
+    <div class="phero-right">
+      <div class="tag-row">
+        <span class="tag">Interaction Design</span><span class="tag">Unity · MediaPipe</span>
+        <span class="tag">Gesture Recognition</span><span class="tag">User Evaluation</span><span class="tag">Exhibition</span>
+      </div>
+      <p class="hero-desc">Visitors control three virtual planets using <strong>body gestures</strong> — extracting or conserving resources triggers contrasting visual and auditory outcomes. The installation <strong>embodies space ethics and environmental themes</strong>, exhibited at Navet Festival with real user evaluation.</p>
+    </div>
+  </div>
+  <div class="pcontent" style="height:200px;display:grid;grid-template-columns:1fr 200px;border-bottom:1px solid var(--p-divider);overflow:hidden;">
+    <div class="col-steps">
+      <div class="section-ey">Key Contributions</div>
+      <div class="steps-4">
+        <div class="step"><div class="step-n">1</div><div class="step-title">Concept &amp; Narrative</div><div class="step-desc">Led the creative concept, defined the interaction narrative structure and multimodal experience framework</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-title">Gesture System Design</div><div class="step-desc">Designed and implemented real-time gesture recognition using Unity + MediaPipe, driving planet state changes</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-title">Museum &amp; Supervisor Collaboration</div><div class="step-desc">Negotiated exhibition requirements with Tekniska Museet; regular supervisor discussions to refine direction</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-title">User Evaluation</div><div class="step-desc">Recruited on-site participants; designed and ran pre/post questionnaires and post-exhibition interviews</div></div>
+      </div>
+    </div>
+    <div class="col-side">
+      <!-- <div>
+        <div class="side-label">Design Core</div>
+        <div class="quote-block"><p class="quote-text">The body as interface — every gesture maps to a planet's fate, letting visitors feel the ethical weight of action and consequence.</p></div>
+      </div> -->
+      <div>
+        <div class="side-label">Tech Stack</div>
+        <div class="tool-list">
+          <div class="tool-row">Unity · C#</div>
+          <div class="tool-row">MediaPipe (gesture)</div>
+          <div class="tool-row">SuperCollider (sound)</div>
+          <div class="tool-row">Figma (prototype)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pscreenshot h406" style="display:grid;grid-template-columns:1fr 260px;">
+    <div class="screenshot-img" style="background:#060b12;border-right:1px solid var(--p-divider);">
+      <img src="navet.jpg" alt="Echo of Action at Tekniska Museet">
+      <div class="screenshot-overlay"></div>
+      <div class="screenshot-caption">Installation View · Tekniska Museet · 10/10/2025</div>
+    </div>
+    <div class="screenshot-side">
+      <div class="screenshot-side-label">Exhibition Record</div>
+      <h2>KTH Navet<br><em>Student Festival</em></h2>
+      <p>Formally exhibited at the museum, recruiting participants of diverse ages and backgrounds for live evaluation.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+        <a class="link-btn" href="https://youtu.be/4AFU7MAPwu8" target="_blank">▶ Demo Video ↗</a>
+        <a class="link-btn" href="https://www.kth.se/sv/navet/for-students/navet-student-festival/selected-projects-navet-student-festival-2025-1.1424702" target="_blank">↗ Selected Projects · KTH</a>
+      </div>
+    </div>
+  </div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="page-nav">
+    <span class="pn-prev" onclick="showPage('sdgs')">← Prev</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-home" onclick="showPage('index')">⌂ Home</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-next" onclick="showPage('studyability')">Next →</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 3: STUDYABILITY MAP
+═══════════════════════════════════════════ -->
+<div id="page-studyability" class="page proj-page theme-amber">
+  <div class="pnav">
+    <span class="pnav-logo" onclick="showPage('index')">TongYu · Portfolio</span>
+    <span class="pnav-center">UX / Interaction Design · KTH 2026</span>
+    <span class="pnav-right">03 / 04</span>
+  </div>
+  <div class="phero">
+    <div class="phero-left">
+      <div class="proj-eyebrow">Project 03 &middot; 2024 &middot; Group Project</div>
+      <h1 class="proj-title">Studyability <em>Map</em></h1>
+      <p class="proj-sub">Helping international students find their ideal university · KTH · DH2321</p>
+    </div>
+    <div class="phero-right">
+      <div class="tag-row">
+        <span class="tag">Information Visualization</span><span class="tag">Vis Design Lead</span>
+        <span class="tag">Frontend Dev</span><span class="tag">User Evaluation</span>
+      </div>
+      <p class="hero-desc">Studyability Map helps prospective students navigate the overwhelming process of choosing a university abroad. Filter <strong>621 universities across 67 countries</strong> by temperature, cost of living, tuition, rankings, and more — with parallel coordinates, scatterplot, and interactive map <strong>syncing in real time</strong>.</p>
+    </div>
+  </div>
+  <div class="pcontent" style="height:200px;display:grid;grid-template-columns:1fr 220px;border-bottom:1px solid var(--p-divider);overflow:hidden;">
+    <div class="col-steps">
+      <div class="section-ey">Key Contributions</div>
+      <div class="steps-3">
+        <div class="step"><div class="step-n">1</div><div class="step-title">Visualization Design Lead</div><div class="step-desc">Led the visual language — color system, hierarchy, and multi-view sync logic ensuring real-time consistency across all views</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-title">Frontend Development</div><div class="step-desc">Built the interactive system in TypeScript; implemented data loading and processing logic, faithfully reproducing the design intent</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-title">User Evaluation</div><div class="step-desc">Participated in 3 rounds of staged classroom critique; collected peer and supervisor feedback to drive iterative refinement</div></div>
+      </div>
+    </div>
+    <div class="col-side">
+      <div class="side-label">Tech Stack</div>
+      <div class="tool-list">
+        <div class="tool-row">TypeScript</div>
+        <div class="tool-row">D3.js (parallel coords · scatter)</div>
+        <div class="tool-row">Mapbox (geo visualization)</div>
+        <div class="tool-row">HTML / CSS · Figma</div>
+      </div>
+    </div>
+  </div>
+  <div class="pscreenshot h406" style="display:grid;grid-template-columns:280px 1fr;">
+    <div class="photo-side-panel">
+      <div class="photo-side-label">Interface Preview</div>
+      <div class="photo-side-title">Parallel Coords · Scatter<br>+ <em>Map Sync</em></div>
+      <p class="photo-side-desc">Multi-dimensional filters sync instantly to the map and ranked list, enabling cross-country comparison at a glance.</p>
+      <a class="video-link" href="https://youtu.be/S9D8J1vjjhs" target="_blank">
+        <div class="play-btn"></div>
+        <span class="video-label">Demo Video ↗</span>
+      </a>
+    </div>
+    <div class="photo-main"><img src="studyability.png" alt="Studyability Map interface"></div>
+  </div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="page-nav">
+    <span class="pn-prev" onclick="showPage('echo')">← Prev</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-home" onclick="showPage('index')">⌂ Home</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-next" onclick="showPage('commuticate')">Next →</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 4: COMMUTICATE
+═══════════════════════════════════════════ -->
+<div id="page-commuticate" class="page proj-page theme-orange">
+  <div class="pnav">
+    <span class="pnav-logo" onclick="showPage('index')">TongYu · Portfolio</span>
+    <span class="pnav-center">UX / Interaction Design · KTH 2026</span>
+    <span class="pnav-right">04 / 04</span>
+  </div>
+  <div class="phero">
+    <div class="phero-left">
+      <div class="proj-eyebrow">Project 04 &middot; 2024 &middot; Group Project</div>
+      <h1 class="proj-title">Commut<em>icate</em></h1>
+      <p class="proj-sub">Non-distracting safety communication system for cyclists · KTH</p>
+    </div>
+    <div class="phero-right">
+      <div class="tag-row">
+        <span class="tag">UI Design</span><span class="tag">User Research</span>
+        <span class="tag">Prototyping</span><span class="tag">Physical Design</span><span class="tag">Figma</span>
+      </div>
+      <p class="hero-desc">Commuticate combines a <strong>handlebar-mounted physical device</strong> with a <strong>mobile app</strong> to help cyclists log and share road incidents without breaking their focus. The device uses vibration and buttons to mark hazards; the app provides incident logs, a community map, and discussion threads.</p>
+    </div>
+  </div>
+  <div class="pcontent" style="height:200px;display:grid;grid-template-columns:1fr 220px;border-bottom:1px solid var(--p-divider);overflow:hidden;">
+    <div class="col-steps">
+      <div class="section-ey">Key Contributions</div>
+      <div class="steps-3">
+        <div class="step"><div class="step-n">1</div><div class="step-title">User Research</div><div class="step-desc">Conducted Bodystorming as a commuter cyclist; interviewed users and a domain expert to surface core needs and design constraints</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-title">Physical Prototype</div><div class="step-desc">Participated in hardware assembly — soldering, sensor integration, and usability testing to validate the interaction logic</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-title">Full App UI Design</div><div class="step-desc">Independently designed all app screens (login, incident log, community map), establishing a unified visual system</div></div>
+      </div>
+    </div>
+    <div class="col-side">
+      <!-- <div>
+        <div class="side-label">Design Core</div>
+        <div class="quote-block"><p class="quote-text">Log without distraction, ride without isolation — Commuticate turns personal road experience into a shared safety map for all cyclists.</p></div>
+      </div> -->
+      <div style="margin-top:10px;">
+        <div class="side-label">Research Methods</div>
+        <div class="tool-list">
+          <div class="tool-row">Bodystorming</div>
+          <div class="tool-row">Literature Review</div>
+          <div class="tool-row">User Interviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pscreenshot h406" style="display:grid;grid-template-columns:320px 1fr;">
+    <div class="photo-prototype">
+      <img src="display.jpg" alt="Commuticate physical prototype">
+      <div class="proto-overlay"></div>
+      <div class="proto-caption">Physical Prototype · Handlebar + Sensors</div>
+    </div>
+    <div class="photo-screens"><img src="Frame 1.png" alt="Commuticate app screens"></div>
+  </div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="page-nav">
+    <span class="pn-prev" onclick="showPage('studyability')">← Prev</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-home" onclick="showPage('index')">⌂ Home</span>
+    <span class="pn-divider">|</span>
+    <span class="pn-next" onclick="showPage('sdgs')">Next →</span>
+  </div>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+}
+// Support hash navigation
+window.addEventListener('hashchange', () => {
+  const hash = location.hash.replace('#','');
+  if (hash) showPage(hash);
+});
+if (location.hash) showPage(location.hash.replace('#',''));
+</script>
+</body>
+</html>

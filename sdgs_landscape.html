@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>于潼 · Compose with the SDGs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0608; --wine:#1e0d15; --gold:#c9a454;
+  --cream:#f0e6d0; --muted:rgba(240,230,208,.55); --dim:rgba(240,230,208,.28);
+  --divider:rgba(201,164,84,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+@page{size:A4 landscape;margin:0;}
+html{background:#111;}
+body{width:1123px;height:794px;background:var(--ink);color:var(--cream);font-family:'Cormorant Garamond','Noto Sans SC',serif;margin:0 auto;display:flex;flex-direction:column;overflow:hidden;}
+@media screen{html{overflow-y:auto;}body{margin:20px auto;}}
+
+/* NAV — 34px */
+.nav{height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid var(--divider);background:rgba(10,6,8,.95);}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--gold);}
+.nav-center{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);}
+.nav-right{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--dim);}
+
+/* HERO — 120px：左=标题，右=tags+背景与动机 */
+.hero{height:120px;flex-shrink:0;display:grid;grid-template-columns:1.1fr 1fr;border-bottom:1px solid var(--divider);}
+.hero-left{padding:12px 24px 12px 36px;border-right:1px solid var(--divider);display:flex;flex-direction:column;justify-content:center;gap:5px;background:var(--wine);}
+.proj-eyebrow{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;}
+.proj-eyebrow::before{content:'';display:inline-block;width:18px;height:1px;background:var(--gold);}
+.proj-title{font-family:'Playfair Display',serif;font-weight:900;font-size:38px;line-height:.92;color:#fff;letter-spacing:-.02em;}
+.proj-title em{font-style:italic;color:var(--gold);}
+.proj-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12.5px;color:var(--muted);line-height:1.3;}
+.hero-right{padding:12px 28px;display:flex;flex-direction:column;justify-content:center;gap:8px;background:var(--ink);}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(201,164,84,.22);padding:3px 8px;}
+.hero-desc{font-family:'Noto Sans SC',sans-serif;font-size:11px;line-height:1.65;color:var(--muted);font-weight:300;}
+.hero-desc strong{color:var(--cream);font-weight:400;}
+
+/* CONTENT — 200px：设计过程（4步横排）+ 技术栈 */
+.content{height:200px;flex-shrink:0;display:grid;grid-template-columns:1fr 200px;border-bottom:1px solid var(--divider);overflow:hidden;}
+.col-steps{padding:14px 16px 12px 36px;border-right:1px solid var(--divider);display:flex;flex-direction:column;gap:8px;overflow:hidden;}
+.col-tech{padding:14px 20px 12px 18px;display:flex;flex-direction:column;gap:8px;overflow:hidden;}
+
+.section-ey{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;display:flex;align-items:center;gap:7px;margin-bottom:6px;}
+.section-ey::before{content:'';display:inline-block;width:12px;height:1px;background:var(--gold);}
+
+/* 4 steps 横排 */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex:1;}
+.step{display:flex;flex-direction:column;gap:4px;padding:8px 10px;border:1px solid var(--divider);background:rgba(201,164,84,.03);}
+.step-n{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:rgba(201,164,84,.25);line-height:1;}
+.step-title{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.step-desc{font-family:'Noto Sans SC',sans-serif;font-size:10px;color:var(--muted);line-height:1.5;font-weight:300;}
+
+.side-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;font-weight:500;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid var(--divider);}
+.side-label::before{content:'';display:inline-block;width:10px;height:1px;background:var(--gold);}
+.tool-list{display:flex;flex-direction:column;gap:5px;}
+.tool-row{display:flex;align-items:center;gap:8px;font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);font-weight:300;}
+.tool-row::before{content:'->';font-family:'DM Mono',monospace;font-size:8px;color:var(--gold);flex-shrink:0;}
+
+/* SCREENSHOT — 406px（34+120+200+406+34=794） */
+.screenshot{height:406px;flex-shrink:0;display:grid;grid-template-columns:1fr 280px;overflow:hidden;}
+.screenshot-img{background:#0d1018;overflow:hidden;border-right:1px solid var(--divider);}
+.screenshot-img img{width:100%;height:100%;object-fit:contain;object-position:top center;opacity:.95;display:block;}
+.screenshot-side{background:var(--wine);padding:28px 24px;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.screenshot-side-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:7px;}
+.screenshot-side-label::before{content:'';display:inline-block;width:12px;height:1px;background:var(--gold);}
+.screenshot-side h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.25;color:#fff;}
+.screenshot-side h2 em{font-style:italic;color:var(--gold);}
+.screenshot-side p{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);font-weight:300;line-height:1.65;}
+.meta-list{display:flex;flex-direction:column;gap:5px;}
+.meta-row{display:flex;align-items:baseline;gap:8px;}
+.meta-key{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);min-width:32px;}
+.meta-val{font-family:'Noto Sans SC',sans-serif;font-size:10.5px;color:var(--cream);font-weight:300;}
+.link-btn{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,164,84,.3);padding:6px 12px;}
+
+/* FOOTER — 34px */
+.footer{height:34px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:0 36px;border-top:1px solid var(--divider);background:var(--wine);}
+.footer-left{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--gold);}
+.footer-right{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+
+@media screen{
+  .page-nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:40px;padding:6px 14px;z-index:999;}
+  .page-nav a{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:4px 10px;border-radius:20px;transition:background .18s,color .18s;white-space:nowrap;}
+  .page-nav .pn-home{color:rgba(255,255,255,.5);}
+  .page-nav .pn-home:hover{color:#fff;background:rgba(255,255,255,.08);}
+  .page-nav .pn-divider{color:rgba(255,255,255,.18);font-size:11px;}
+  .page-nav .pn-prev,.page-nav .pn-next{color:var(--gold);border:1px solid rgba(201,164,84,.25);}
+  .page-nav .pn-prev:hover,.page-nav .pn-next:hover{background:rgba(201,164,84,.12);border-color:var(--gold);}
+}
+@media print{.page-nav{display:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <span class="nav-logo">TongYu · Portfolio</span>
+  <span class="nav-center">UX / Interaction Design · KTH 2026</span>
+  <span class="nav-right">01 / 04</span>
+</div>
+
+<!-- HERO：左=标题，右=tags + 背景与动机 -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="proj-eyebrow">Project 01 &middot; 2026 &middot; Completed</div>
+    <h1 class="proj-title">Compose with the <em>SDGs</em></h1>
+    <p class="proj-sub">将联合国可持续发展目标数据转化为音乐 · 用声音感知全球议题</p>
+  </div>
+  <div class="hero-right">
+    <div class="tag-row">
+      <span class="tag">Data Sonification</span>
+      <span class="tag">Interaction Design</span>
+      <span class="tag">User Research</span>
+      <span class="tag">Web Audio</span>
+      <span class="tag">Frontend Dev</span>
+    </div>
+    <p class="hero-desc">SDG 数据庞大、分布不均，传统图表难以引发情感共鸣。这个项目探索：<strong>声音化交互能否让复杂的全球数据变得更具接近感</strong>，同时引导用户反思数据缺失背后的社会议题。</p>
+  </div>
+</div>
+
+<!-- CONTENT：设计过程（4步横排）+ 技术栈 -->
+<div class="content">
+  <div class="col-steps">
+    <div class="section-ey">设计过程</div>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div class="step-title">课程原型</div><div class="step-desc">基于 SuperCollider 构建声音映射原型，验证"数据→音符"的基础交互逻辑</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-title">用户研究 · 可用性测试</div><div class="step-desc">通过问卷与用户访谈收集反馈，识别核心可用性问题</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-title">迭代设计 · 技术迁移</div><div class="step-desc">根据反馈重构交互；从 SuperCollider 迁移至 HTML/CSS/JS + Tone.js</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-title">功能扩展 · 学术输出</div><div class="step-desc">新增地图交互、实时五线谱可视化与调性控制；成果投稿 ICAD</div></div>
+    </div>
+  </div>
+  <div class="col-tech">
+    <div class="side-label">技术栈</div>
+    <div class="tool-list">
+      <div class="tool-row">HTML / CSS / JavaScript</div>
+      <div class="tool-row">Tone.js · Web Audio API</div>
+      <div class="tool-row">Mapbox（地图交互）</div>
+      <div class="tool-row">Figma · Git / GitHub</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOT：图片 + 右侧面板 -->
+<div class="screenshot">
+  <div class="screenshot-img">
+    <img src="interface.png" alt="Compose with the SDGs interface">
+  </div>
+  <div class="screenshot-side">
+    <div class="screenshot-side-label">界面预览</div>
+    <h2>地图交互<br>+ <em>实时乐谱</em>生成</h2>
+    <p>点击国家地图选取 SDG 数据，音符实时加入五线谱，支持调性与速度调节</p>
+    <div class="meta-list">
+      <div class="meta-row"><span class="meta-key">时间</span><span class="meta-val">2025.08 – 2026.03</span></div>
+      <div class="meta-row"><span class="meta-key">性质</span><span class="meta-val">KTH 个人课程项目</span></div>
+      <div class="meta-row"><span class="meta-key">成果</span><span class="meta-val">投稿 ICAD</span></div>
+    </div>
+    <a class="link-btn" href="https://toyukth.github.io/ComposeSDGs/" target="_blank">↗ Live Demo</a>
+  </div>
+</div>
+
+<div class="footer">
+  <span class="footer-left">TongYu &middot; toyu@kth.se</span>
+  <span class="footer-right">KTH Royal Institute of Technology &middot; Stockholm 2026</span>
+</div>
+
+<div class="page-nav">
+  <a class="pn-prev" href="commuticate_landscape.html">← Prev</a>
+  <span class="pn-divider">|</span>
+  <a class="pn-home" href="index.html">⌂ Home</a>
+  <span class="pn-divider">|</span>
+  <a class="pn-next" href="echo_landscape.html">Next →</a>
+</div>
+
+</body>
+</html>
