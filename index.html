@@ -209,10 +209,79 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
 .pn-prev,.pn-next { color:var(--gold); border:1px solid rgba(201,164,84,.25); }
 .pn-prev:hover,.pn-next:hover { background:rgba(201,164,84,.12); }
 @media print { .page-nav { display:none !important; } }
-.publications-section { max-width:1040px; width:100%; margin:0 auto; padding:12px 24px 20px; }
-.publications-section h2 { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
-.publications-section p { font-family:'Noto Sans SC',sans-serif; font-size:12px; line-height:1.65; color:var(--muted); margin:8px 0; }
-.publications-section strong { color:var(--cream); font-weight:400; }
+/* Screen typography and spacing */
+@media screen {
+#page-index { --muted:rgba(240,230,208,.76); --dim:rgba(240,230,208,.58); }
+#page-index nav { height:68px; padding:0 max(24px,calc((100vw - 1120px)/2)); gap:20px; }
+#page-index .nav-logo { font-size:23px; }
+#page-index .nav-links a, #page-index .nav-contact { font-size:11px; }
+#page-index .nav-contact { padding:9px 14px; }
+#page-index .hero-wrap { max-width:1120px; padding:56px 28px 0; }
+#page-index .hero-grid, #page-index .hero { grid-template-columns:.85fr 1.15fr; gap:64px; padding:0 0 36px; }
+#page-index .hero-eyebrow { font-size:10px; letter-spacing:.14em; margin-bottom:20px; }
+#page-index .hero-name { font-size:clamp(58px,6.5vw,84px); line-height:1.05; }
+#page-index .hero-role { font-size:22px; line-height:1.5; margin-top:18px; }
+#page-index .hero-desc { font-family:'Noto Sans SC',Arial,sans-serif; font-size:15px; line-height:1.85; font-weight:400; margin-bottom:16px; }
+#page-index .hero-meta { gap:8px; padding:16px 18px; }
+#page-index .hero-meta-key { font-size:10px; min-width:66px; }
+#page-index .hero-meta-val { font-size:13px; overflow-wrap:anywhere; }
+#page-index .projects-section { max-width:1120px; padding:30px 28px 48px; flex:0 0 auto; }
+#page-index .projects-header { margin-bottom:20px; gap:16px; flex-wrap:wrap; }
+#page-index .projects-eyebrow, #page-index .projects-count { font-size:11px; }
+#page-index .projects-grid { gap:20px; grid-template-columns:repeat(2,minmax(0,1fr)); flex:0 0 auto; }
+#page-index .card-inner { padding:26px; min-height:270px; }
+#page-index .card-top { margin-bottom:20px; }
+#page-index .card-num, #page-index .card-status { font-size:10px; line-height:1.6; }
+#page-index .card-arrow { font-size:18px; }
+#page-index .card-title { font-size:clamp(26px,2.5vw,34px); line-height:1.2; white-space:normal; margin-bottom:10px; }
+#page-index .card-sub { font-size:20px; line-height:1.4; margin-bottom:12px; }
+#page-index .card-desc { font-size:14px; line-height:1.8; font-weight:400; color:var(--muted); margin-bottom:20px; }
+#page-index .card-footer { padding-top:14px; }
+#page-index footer { margin-top:auto; padding:22px 28px; gap:16px; flex-wrap:wrap; }
+#page-index .footer-logo { font-size:18px; }
+#page-index .footer-links { flex-wrap:wrap; }
+#page-index .footer-links a, #page-index .footer-copy { font-size:10px; }
+}
+@media screen and (max-width:760px) {
+#page-index nav { height:60px; padding:0 20px; }
+#page-index .nav-contact { display:none; }
+#page-index .hero-wrap { padding:36px 20px 0; }
+#page-index .hero-grid, #page-index .hero { grid-template-columns:minmax(0,1fr); gap:28px; padding-bottom:28px; }
+#page-index .hero-name { font-size:64px; }
+#page-index .hero-eyebrow { font-size:9px; }
+#page-index .projects-section { padding:26px 20px 36px; }
+#page-index .projects-grid { grid-template-columns:minmax(0,1fr); gap:16px; }
+#page-index .card-inner { padding:22px; min-height:0; }
+#page-index footer { flex-direction:column; align-items:flex-start; padding:22px 20px; }
+}
+
+/* Compact desktop overview */
+@media screen and (min-width:761px) {
+#page-index nav { height:48px; }
+#page-index .nav-logo { font-size:19px; }
+#page-index .nav-links a, #page-index .nav-contact { font-size:10px; }
+#page-index .nav-contact { padding:6px 10px; }
+#page-index .hero-wrap { max-width:1120px; padding:22px 28px 0; }
+#page-index .hero-grid, #page-index .hero { grid-template-columns:.8fr 1.2fr; gap:40px; padding-bottom:18px; }
+#page-index .hero-eyebrow { margin-bottom:12px; }
+#page-index .hero-name { font-size:58px; }
+#page-index .hero-role { font-size:18px; margin-top:10px; line-height:1.4; }
+#page-index .hero-desc { font-size:12.5px; line-height:1.6; margin-bottom:9px; }
+#page-index .hero-meta { padding:9px 12px; gap:4px; }
+#page-index .hero-meta-val { font-size:12px; }
+#page-index .projects-section { padding:16px 28px 20px; }
+#page-index .projects-header { margin-bottom:12px; }
+#page-index .projects-grid { gap:12px; }
+#page-index .card-inner { padding:16px 18px; min-height:185px; }
+#page-index .card-top { margin-bottom:9px; }
+#page-index .card-title { font-size:27px; margin-bottom:5px; }
+#page-index .card-sub { font-size:16px; line-height:1.3; margin-bottom:7px; }
+#page-index .card-desc { font-size:12px; line-height:1.55; margin-bottom:10px; }
+#page-index .card-footer { padding-top:8px; }
+#page-index footer { padding:12px 28px; }
+#page-index .footer-logo { font-size:15px; }
+}
+
 </style>
 </head>
 <body>
@@ -240,7 +309,6 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
         <div>
           <p class="hero-desc">I hold a master's degree in <strong>Interactive Media Technology</strong> from KTH (2026). I design and evaluate interactive systems that help people explore complex data and societal issues, drawing on experience in <strong>prototyping, user studies, and public-sector software development</strong>.</p><p class="hero-desc"><strong>Research interests:</strong> human–AI co-creation, creative and multimodal interaction, and technology for social good. I am interested in how sharing creative work between people and AI affects their exploration, understanding, and willingness to learn about societal issues.</p>
           <div class="hero-meta" style="margin-top:10px;">
-            <div class="hero-meta-row"><span class="hero-meta-key">Location</span><span class="hero-meta-val">Stockholm, Sweden</span></div>
             <div class="hero-meta-row"><span class="hero-meta-key">Degree</span><span class="hero-meta-val">M.Sc. · KTH · 2026</span></div>
             <div class="hero-meta-row"><span class="hero-meta-key">Contact</span><span class="hero-meta-val">aiyurugtong@gmail.com · (+86) 18547602877</span></div>
           </div>
@@ -292,15 +360,10 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
       </div>
     </section>
   </main>
-  <section class="publications-section" aria-labelledby="publications-title">
-      <h2 id="publications-title">Publications · ICAD 2026</h2>
-      <p><strong>Yu, T., &amp; Berta, M.</strong> <em>Compose with the SDGs: A Creative Sonification Tool for Sustainable Development Goal Data Engagement.</em> Accepted for publication at the International Conference on Auditory Display (ICAD 2026).</p>
-      <p><strong>Yu, T., &amp; Zhang, L.</strong> <em>Optimal Pitch Mapping for Parameter Mapping Sonification under Just-Noticeable Difference Constraints.</em> Accepted for publication at the International Conference on Auditory Display (ICAD 2026).</p>
-    </section>
   <footer>
     <div class="footer-logo">TongYu · Portfolio 2026</div>
     <div class="footer-links"><a href="mailto:aiyurugtong@gmail.com">aiyurugtong@gmail.com</a><a href="tel:+8618547602877">(+86) 18547602877</a></div>
-    <div class="footer-copy">KTH Royal Institute of Technology · Stockholm</div>
+    <div class="footer-copy">KTH Royal Institute of Technology</div>
   </footer>
 </div>
 
@@ -361,7 +424,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
       <a class="link-btn" href="https://tongyukth.github.io/ComposeWithTheSDGs/" target="_blank">↗ Live Demo</a>
     </div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('commuticate')">← Prev</span>
     <span class="pn-divider">|</span>
@@ -436,7 +499,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
       </div>
     </div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('sdgs')">← Prev</span>
     <span class="pn-divider">|</span>
@@ -500,7 +563,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
     </div>
     <div class="photo-main"><img src="studyability.png" alt="Studyability Map interface"></div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('echo')">← Prev</span>
     <span class="pn-divider">|</span>
@@ -565,7 +628,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
     </div>
     <div class="photo-screens"><img src="Frame 1.png" alt="Commuticate app screens"></div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('studyability')">← Prev</span>
     <span class="pn-divider">|</span>
