@@ -209,6 +209,10 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
 .pn-prev,.pn-next { color:var(--gold); border:1px solid rgba(201,164,84,.25); }
 .pn-prev:hover,.pn-next:hover { background:rgba(201,164,84,.12); }
 @media print { .page-nav { display:none !important; } }
+.publications-section { max-width:1040px; width:100%; margin:0 auto; padding:12px 24px 20px; }
+.publications-section h2 { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.publications-section p { font-family:'Noto Sans SC',sans-serif; font-size:12px; line-height:1.65; color:var(--muted); margin:8px 0; }
+.publications-section strong { color:var(--cream); font-weight:400; }
 </style>
 </head>
 <body>
@@ -221,24 +225,24 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
     <a class="nav-logo" onclick="showPage('index')">TongYu</a>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
-      <li><a href="mailto:toyu@kth.se">Contact</a></li>
+      <li><a href="mailto:aiyurugtong@gmail.com">Contact</a></li>
     </ul>
-    <a class="nav-contact" href="mailto:toyu@kth.se">Get in Touch</a>
+    <a class="nav-contact" href="mailto:aiyurugtong@gmail.com">Get in Touch</a>
   </nav>
   <main style="flex:1;display:flex;flex-direction:column;">
     <section class="hero-wrap">
       <div class="hero-grid">
         <div>
-          <div class="hero-eyebrow">HCI · UX Design · Creative Tech</div>
+          <div class="hero-eyebrow">HCI · Creative Interaction · Social Good</div>
           <h1 class="hero-name">Tong<em>Yu</em></h1>
-          <p class="hero-role">Interaction Designer &amp; Researcher<br>KTH Royal Institute of Technology</p>
+          <p class="hero-role">Interaction Designer &amp; Researcher<br>M.Sc. Interactive Media Technology · KTH</p>
         </div>
         <div>
-          <p class="hero-desc">Master's student in <strong>Interactive Media Technology</strong> at KTH, with a focus on HCI, interaction design, and information visualization. Former systems analyst with hands-on experience in <strong>user research, prototyping, and frontend development</strong>.</p>
+          <p class="hero-desc">I hold a master's degree in <strong>Interactive Media Technology</strong> from KTH (2026). I design and evaluate interactive systems that help people explore complex data and societal issues, drawing on experience in <strong>prototyping, user studies, and public-sector software development</strong>.</p><p class="hero-desc"><strong>Research interests:</strong> human–AI co-creation, creative and multimodal interaction, and technology for social good. I am interested in how sharing creative work between people and AI affects their exploration, understanding, and willingness to learn about societal issues.</p>
           <div class="hero-meta" style="margin-top:10px;">
             <div class="hero-meta-row"><span class="hero-meta-key">Location</span><span class="hero-meta-val">Stockholm, Sweden</span></div>
-            <div class="hero-meta-row"><span class="hero-meta-key">School</span><span class="hero-meta-val">KTH Royal Institute of Technology</span></div>
-            <div class="hero-meta-row"><span class="hero-meta-key">Contact</span><span class="hero-meta-val">toyu@kth.se · (+86) 18547602877</span></div>
+            <div class="hero-meta-row"><span class="hero-meta-key">Degree</span><span class="hero-meta-val">M.Sc. · KTH · 2026</span></div>
+            <div class="hero-meta-row"><span class="hero-meta-key">Contact</span><span class="hero-meta-val">aiyurugtong@gmail.com · (+86) 18547602877</span></div>
           </div>
         </div>
       </div>
@@ -246,7 +250,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
     <section class="projects-section" id="projects">
       <div class="projects-header">
         <div class="projects-eyebrow">Selected Projects</div>
-        <div class="projects-count">2024 – 2025 · 04 Works</div>
+        <div class="projects-count">2024 – 2026 · 04 Works</div>
       </div>
       <div class="projects-grid">
         <div class="card card-1" onclick="showPage('sdgs')">
@@ -255,7 +259,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
             <div class="card-title">Compose with the <em>SDGs</em></div>
             <div class="card-sub">Translating UN sustainability data into music</div>
             <div class="card-desc">Exploring whether sonification can make complex global data more approachable — map clicks generate real-time musical scores.</div>
-            <div class="card-footer"><span class="card-status">Completed · ICAD Submission</span></div>
+            <div class="card-footer"><span class="card-status">Accepted · ICAD 2026</span></div>
           </div>
         </div>
         <div class="card card-2" onclick="showPage('echo')">
@@ -288,9 +292,14 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
       </div>
     </section>
   </main>
+  <section class="publications-section" aria-labelledby="publications-title">
+      <h2 id="publications-title">Publications · ICAD 2026</h2>
+      <p><strong>Yu, T., &amp; Berta, M.</strong> <em>Compose with the SDGs: A Creative Sonification Tool for Sustainable Development Goal Data Engagement.</em> Accepted for publication at the International Conference on Auditory Display (ICAD 2026).</p>
+      <p><strong>Yu, T., &amp; Zhang, L.</strong> <em>Optimal Pitch Mapping for Parameter Mapping Sonification under Just-Noticeable Difference Constraints.</em> Accepted for publication at the International Conference on Auditory Display (ICAD 2026).</p>
+    </section>
   <footer>
     <div class="footer-logo">TongYu · Portfolio 2026</div>
-    <div class="footer-links"><a href="mailto:toyu@kth.se">toyu@kth.se</a><a href="tel:+8618547602877">(+86) 18547602877</a></div>
+    <div class="footer-links"><a href="mailto:aiyurugtong@gmail.com">aiyurugtong@gmail.com</a><a href="tel:+8618547602877">(+86) 18547602877</a></div>
     <div class="footer-copy">KTH Royal Institute of Technology · Stockholm</div>
   </footer>
 </div>
@@ -325,7 +334,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
         <div class="step"><div class="step-n">1</div><div class="step-title">Course Prototype</div><div class="step-desc">Built initial sound-mapping prototype in SuperCollider to validate the data→note interaction logic</div></div>
         <div class="step"><div class="step-n">2</div><div class="step-title">User Research · Usability</div><div class="step-desc">Collected feedback via questionnaires and interviews; identified key usability issues</div></div>
         <div class="step"><div class="step-n">3</div><div class="step-title">Iteration · Tech Migration</div><div class="step-desc">Redesigned interaction based on findings; migrated from SuperCollider to HTML/CSS/JS + Tone.js</div></div>
-        <div class="step"><div class="step-n">4</div><div class="step-title">Expansion · Academic Output</div><div class="step-desc">Added map interaction, live score visualization, key control; submitted to ICAD</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-title">Expansion · Academic Output</div><div class="step-desc">Added map interaction, live score visualization, key control; accepted at ICAD 2026</div></div>
       </div>
     </div>
     <div class="col-tech">
@@ -347,12 +356,12 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
       <div class="pmeta-list">
         <div class="pmeta-row"><span class="pmeta-key">Period</span><span class="pmeta-val">Aug 2025 – Mar 2026</span></div>
         <div class="pmeta-row"><span class="pmeta-key">Type</span><span class="pmeta-val">Individual KTH course project</span></div>
-        <div class="pmeta-row"><span class="pmeta-key">Output</span><span class="pmeta-val">Submitted to ICAD</span></div>
+        <div class="pmeta-row"><span class="pmeta-key">Output</span><span class="pmeta-val">Accepted · ICAD 2026</span></div>
       </div>
-      <a class="link-btn" href="https://toyukth.github.io/ComposeSDGs/" target="_blank">↗ Live Demo</a>
+      <a class="link-btn" href="https://tongyukth.github.io/ComposeWithTheSDGs/" target="_blank">↗ Live Demo</a>
     </div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('commuticate')">← Prev</span>
     <span class="pn-divider">|</span>
@@ -427,7 +436,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
       </div>
     </div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('sdgs')">← Prev</span>
     <span class="pn-divider">|</span>
@@ -491,7 +500,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
     </div>
     <div class="photo-main"><img src="studyability.png" alt="Studyability Map interface"></div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('echo')">← Prev</span>
     <span class="pn-divider">|</span>
@@ -556,7 +565,7 @@ body { background: var(--ink); color: var(--cream); font-family: 'Cormorant Gara
     </div>
     <div class="photo-screens"><img src="Frame 1.png" alt="Commuticate app screens"></div>
   </div>
-  <div class="pfooter"><span class="pfooter-left">TongYu · toyu@kth.se</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
+  <div class="pfooter"><span class="pfooter-left">TongYu · aiyurugtong@gmail.com</span><span class="pfooter-right">KTH Royal Institute of Technology · Stockholm 2026</span></div>
   <div class="page-nav">
     <span class="pn-prev" onclick="showPage('studyability')">← Prev</span>
     <span class="pn-divider">|</span>
